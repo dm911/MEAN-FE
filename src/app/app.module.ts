@@ -34,8 +34,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     JwtHelperService,
     AuthService,
     TransactionService

@@ -26,6 +26,12 @@ export class TransactionDetailComponent implements OnInit {
     if (id) {
       this.transactionService.getTransactionById(id).subscribe((data: Transaction) => {
         this.transaction = data;
+      },(error) => {
+        if (error.status === 403) {
+          this.router.navigate(['/login']);
+        } else {
+          console.error('Error fetching transactions', error);
+        }
       });
     }
   }
@@ -33,7 +39,14 @@ export class TransactionDetailComponent implements OnInit {
   updateTransaction(): void {
     if (this.transaction && this.transaction._id) {
       this.transactionService.updateTransaction(this.transaction._id, this.transaction)
-        .subscribe(() => this.router.navigate(['/transaction-list']));
+        .subscribe(() => this.router.navigate(['/transaction-list']),
+        (error) => {
+          if (error.status === 403) {
+            this.router.navigate(['/login']);
+          } else {
+            console.error('Error fetching transactions', error);
+          }
+        });
     }
   }
 

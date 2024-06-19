@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#">Transaction App</a>
     </div>
     <ul class="nav navbar-nav navbar-right">
-      <li><a *ngIf="authService.isAuthenticated()" (click)="logout()">Logout</a></li>
+      <li><button *ngIf="isAuthenticated" (click)="logout()">Logout</button></li>
     </ul>
   </div>
 </nav>

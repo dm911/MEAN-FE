@@ -25,6 +25,7 @@ export class LoginComponent {
         (response: any) => {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/transaction-list']);
+          
         },
         (error) => {
           this.errorMessage = 'Invalid username or password';
